@@ -1,0 +1,19 @@
+#Scripts and tools
+PERL=/usr/local/biotools/perl/5.10.1/bin/perl
+MULTIALLELE=/dlmp/sandbox/cgslIS/codes/CONTAMINATION/MultiAllele_VCFsplit.pl
+CONTEST=/dlmp/sandbox/cgslIS/codes/CONTAMINATION/contest-1.0.24530-bin/ContEst.jar
+JAVA=/usr/local/biotools/java/jdk1.6.0_33/bin/java
+QSUB=/usr/local/biotools/oge/ge2011.11/bin/linux-x64/qsub
+
+#Variant Min Cvg
+CVG=10
+
+#Contest Reference
+HAPMAP_VCF=/dlmp/sandbox/cgslIS/db/HapMap_hg19.vcf
+REFERENCE=/dlmp/sandbox/cgslIS/db/hg19_ordered.fa
+
+#Memory Specs
+JVM_MEMORY=5G
+JOB_MEMORY=10G
+SUMMARY_MEM=1G
+QUEUE=sandbox.q
