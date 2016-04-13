@@ -11,6 +11,22 @@ from optparse import OptionParser
 from random import randint
 from subprocess import call
 
+
+#######################################################################
+'''This program takes a run directory of CLC as input,  a config File and output directory
+
+Usage: python Dlmp_Contest.py -r <RunFolder> -c <configFile> -o <OutputDir>
+
+Author: Jagadheshwar Balan
+Contact: balan.jagadheshwar@mayo.edu
+
+OUTPUT: A text report of sample IDs and corresponding IntraAssay contamination estimates
+
+'''
+#######################################################################
+
+
+
 def GetArgs():
 	usage = "python Dlmp_ContEst.py -r <RunFolder> -c <ConfigFile> -o <OutputDir>"
 	parser = OptionParser(usage = usage)
@@ -37,23 +53,24 @@ def GetArgs():
 		subprocess.call([Cmd], shell=True)
 	
 	
-	return (ConfigFile,SampleDir,SamplePath,OutputPath+"/")
+	return (ConfigFile,SampleDir,SamplePath,OutputPath+"/",RunName)
 	
 def main():
-	ConfigFile,SampleDir,SamplePath,OutputPath = GetArgs()
+	ConfigFile,SampleDir,SamplePath,OutputPath,RunName = GetArgs()
 	Perl,SplitAllele,ContEst,Java,Cvg,Hapmap,Ref,Jvm_mem,Job_mem,Summary_mem,Qsub,Queue=ProcessConfigFile(ConfigFile)
 	ProcessedVCFs,BAMNames = FindVCF_BAMFiles(SampleDir,SamplePath,SplitAllele,Perl,OutputPath)
 	JobIds = ""
 	for i in range(0,len(BAMNames)):
 		if i == 0:
-			JobIds = RunContEst(Java,ContEst,ProcessedVCFs[i],BAMNames[i],OutputPath,Hapmap,Ref,Cvg,i,Jvm_mem,Job_mem,Qsub,Queue)
+			JobIds = RunContEst(Java,ContEst,ProcessedVCFs[i],BAMNames[i],OutputPath,Hapmap,Ref,Cvg,i,Jvm_mem,Job_mem,Qsub,Queue,RunName)
 		else:
-			JobIds = JobIds + "," + RunContEst(Java,ContEst,ProcessedVCFs[i],BAMNames[i],OutputPath,Hapmap,Ref,Cvg,i,Jvm_mem,Job_mem,Qsub,Queue)
+			JobIds = JobIds + "," + RunContEst(Java,ContEst,ProcessedVCFs[i],BAMNames[i],OutputPath,Hapmap,Ref,Cvg,i,Jvm_mem,Job_mem,Qsub,Queue,RunName)
 	PrepRunlevelFile(OutputPath,JobIds,Summary_mem,Qsub,Queue)
 	return 1
 	
-def RunContEst(Java,ContEst,ProcessedVCF,BAMName,OutputPath,Hapmap,Ref,Cvg,Number,Jvm_mem,Job_mem,Qsub,Queue):
+def RunContEst(Java,ContEst,ProcessedVCF,BAMName,OutputPath,Hapmap,Ref,Cvg,Number,Jvm_mem,Job_mem,Qsub,Queue,RunName):
 	SampleName = BAMName.split("/")[-1]
+	RunName = RunName.split("/")[-2]
 	if os.path.isdir(OutputPath+"tmp/Jobs") == False:
 		Cmd = 'mkdir ' +OutputPath+"tmp/Jobs"
 		subprocess.call([Cmd], shell=True)
@@ -61,9 +78,9 @@ def RunContEst(Java,ContEst,ProcessedVCF,BAMName,OutputPath,Hapmap,Ref,Cvg,Numbe
 	JobFile = open(OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".sh"),"w")
 	JobFile.write("#!/bin/bash\n"+Cmd)
 	JobFile.close()
-	Cmd = Qsub +" -q " + Queue + " -l h_vmem="+ Job_mem +" -b y -N CONTEST_"+str(Number) + " -e " + OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".error") + " -o " + OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".out") + " " + OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".sh")
+	Cmd = Qsub +" -q " + Queue + " -l h_vmem="+ Job_mem +" -b y -N CONTEST_"+RunName+"_"+str(Number) + " -e " + OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".error") + " -o " + OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".out") + " " + OutputPath+"tmp/Jobs/"+SampleName.replace(".bam",".sh")
 	subprocess.call([Cmd], shell=True)
-	return "CONTEST_"+str(Number)
+	return "CONTEST_"+RunName+"_"+str(Number)
 
 def ProcessVCF(VCFName,Perl,SplitAllele,SamplePath,SampleName,OutputPath):
 	if os.path.isdir(OutputPath+"tmp") == False:
