@@ -1,3 +1,5 @@
+#### Detecting Intra Assay contamination
+```
 Intra assay contamination occurs when a patient sample designated for a test orderable is contaminated with patient(s) who came in for the same test orderable. This results in erroneous reports being generated due to variant data in the patient sample being misrepresented. Detecting this is crucial in improving patient care.
 
 This script has been designed in order to detect these intra assay contamination events. This script uses a tool developed by Broad institute named ContEst. The script runs ContEst on the CLC samples and detects any abnormality in the patient data.
@@ -90,3 +92,4 @@ LOCATION: /dlmp/sandbox/cgslIS/Jag/CONTAMINATION/SQA/ContEst/ContEstReport.txt
 10068518568 1.4
 
 Each line has a sample name and then a % of contamination estimate for the sample.
+```
