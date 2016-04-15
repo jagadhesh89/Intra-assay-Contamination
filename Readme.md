@@ -73,7 +73,7 @@
 ##		Remove all Chromosome X and Y variants
 ##		Substitute genotype info with 0 when “.” Is present, otherwise ContEst does not work.
 ##	4.	Create Job Files to submit ContEst tool for each sample
-##	SCRIPT - /dlmp/sandbox/cgslIS/codes/CONTAMINATION/contest-1.0.24530-bin/ContEst.jar
+##			SCRIPT - /dlmp/sandbox/cgslIS/codes/CONTAMINATION/contest-1.0.24530-bin/ContEst.jar
 ##	5.	Submit the ContEst job for each sample and submit one job for the overall report. 
 ##	6.	Process output from ContEst and create a run level summary file
 ##
