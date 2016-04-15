@@ -1,4 +1,4 @@
-#### Detecting Intra Assay contamination
+#### Detecting Intra Assay contamination using Contest
 ```
 ############################################################################################################
 ##	Intra assay contamination occurs when a patient sample designated for a test orderable is contaminated with patient(s) who came in for the same test orderable. This results in erroneous reports being generated due to variant data in the patient sample being misrepresented. Detecting this is crucial in improving patient care.
