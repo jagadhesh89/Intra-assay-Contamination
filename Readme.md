@@ -1,4 +1,4 @@
-#### Detecting Intra Assay contamination
+#### Detecting Intra Assay contamination using Contest
 ```
 ############################################################################################################
 ##	Intra assay contamination occurs when a patient sample designated for a test orderable is contaminated with patient(s) who came in for the same test orderable. This results in erroneous reports being generated due to variant data in the patient sample being misrepresented. Detecting this is crucial in improving patient care.
@@ -49,6 +49,18 @@
 ##	JOB_MEMORY=10G
 ##	SUMMARY_MEM=1G
 ##	QUEUE=sandbox.q  
+##
+##	-----------------------------------
+##	DEPENDENCIES
+##	-----------------------------------
+##	TOOLS
+##		1. Python
+##		2. Perl
+##		3. Java
+##		4. ContEst - Located in "contest-1.0.24530-bin" folder in Git repo
+##	SCRIPTS
+##		1. MultiAllele_VCFsplit.pl
+##	
 ##	-----------------------------------
 ##	MAIN SUB STEPS:
 ##	-----------------------------------
