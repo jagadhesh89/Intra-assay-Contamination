@@ -91,6 +91,7 @@
 ##	Your job 3632657 ("CONTEST_NGSHM_20160406_SSXT140_MS274A_AN0WH_4") has been submitted
 ##	Your job 3632658 ("CONTEST_NGSHM_20160406_SSXT140_MS274A_AN0WH_5") has been submitted
 ##	Your job 3632659 ("ContReport") has been submitted
+##
 ##	-----------------------------------
 ##	Output file example
 ##	-----------------------------------
