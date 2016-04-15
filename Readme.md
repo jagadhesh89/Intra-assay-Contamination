@@ -5,7 +5,7 @@
 ##
 ##	This script has been designed in order to detect these intra assay contamination events. This script uses a tool developed by Broad institute named ContEst. The script runs ContEst on the CLC samples and detects any abnormality in the patient data.
 ##
-##	**-------------------------**
+	**-------------------------**
 ##	**USAGE**:
 ##	**-------------------------**
 ##
