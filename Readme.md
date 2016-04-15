@@ -5,18 +5,18 @@
 ##
 ##	This script has been designed in order to detect these intra assay contamination events. This script uses a tool developed by Broad institute named ContEst. The script runs ContEst on the CLC samples and detects any abnormality in the patient data.
 ##
-##	-------------------------
-##	USAGE:
-##	-------------------------
+##	**-------------------------**
+##	**USAGE**:
+##	**-------------------------**
 ##
 ##	python Dlmp_ContEst.py -r <RunFolder> -c <ConfigFile> -o <OutputDir>
 ##                 -r CLC_Run_Folder # REQUIRED
 ##                 -c configfile     # REQUIRED Contest config File
 ##                -o outdir         # REQUIRED outdir name
 ##               
-##	---------------------------
-##	INPUT DATA STRUCTURE:
-##	---------------------------
+##	**---------------------------**
+##	**INPUT DATA STRUCTURE**:
+##	**---------------------------**
 ##
 ##   <RUN_NAME>/samples/<sampleA>
 ##          /<sampleB> 
@@ -25,9 +25,9 @@
 ##      	<sampleX>.bam
 ##		<sampleX>_cmb.vcf
 ##
-##	----------------------------
-##	CONFIG FILE:
-##	----------------------------
+##	**----------------------------**
+##	**CONFIG FILE:**
+##	**----------------------------**
 ##	A config file is needed. 
 ##
 ##	#Scripts and tools
@@ -50,9 +50,9 @@
 ##	SUMMARY_MEM=1G
 ##	QUEUE=sandbox.q  
 ##
-##	-----------------------------------
-##	DEPENDENCIES
-##	-----------------------------------
+##	**-----------------------------------**
+##	**DEPENDENCIES**
+##	**-----------------------------------**
 ##	TOOLS
 ##		1. Python
 ##		2. Perl
@@ -61,9 +61,9 @@
 ##	SCRIPTS
 ##		1. MultiAllele_VCFsplit.pl
 ##	
-##	-----------------------------------
-##	MAIN SUB STEPS:
-##	-----------------------------------
+##	**-----------------------------------**
+##	**MAIN SUB STEPS:**
+##	**-----------------------------------**
 ##
 ##	1.	The program processes the config files for the tools and memory for submitting the jobs.
 ##	2.	It then scans each sample directory in the run folder for the BAM and VCF File
@@ -77,9 +77,9 @@
 ##	5.	Submit the ContEst job for each sample and submit one job for the overall report. 
 ##	6.	Process output from ContEst and create a run level summary file
 ##
-##	-------------------------------------
-##	RUN EXAMPLE:
-##	-------------------------------------
+##	**-------------------------------------**
+##	**RUN EXAMPLE:**
+##	**-------------------------------------**
 ##
 ##	python /dlmp/sandbox/cgslIS/codes/CONTAMINATION/Dlmp_ContEst.py -r /dlmp/prod/runs/NGSHM/NGSHM_20160406_SSXT140_MS274A_AN0WH/ -c /dlmp/sandbox/cgslIS/codes/CONTAMINATION/config.txt -o /dlmp/sandbox/cgslIS/Jag/CONTAMINATION/SQA/ContEst
 ##
@@ -91,9 +91,9 @@
 ##	Your job 3632657 ("CONTEST_NGSHM_20160406_SSXT140_MS274A_AN0WH_4") has been submitted
 ##	Your job 3632658 ("CONTEST_NGSHM_20160406_SSXT140_MS274A_AN0WH_5") has been submitted
 ##	Your job 3632659 ("ContReport") has been submitted
-##	-----------------------------------
-##	Output file example
-##	-----------------------------------
+##	**-----------------------------------**
+##	**Output file example**
+##	**-----------------------------------**
 ##	When jobs finish running, there will be text file report generated in the output folder named “ContEstReport.txt”:
 ##
 ##	LOCATION: /dlmp/sandbox/cgslIS/Jag/CONTAMINATION/SQA/ContEst/ContEstReport.txt
